@@ -20,6 +20,20 @@ class App extends React.Component {
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
+    //resizing code-- doesn't work as far as I can see, but not sure I need it
+    // function resizeRendererToDisplaySize(renderer) {
+    //   const canvas = renderer.domElement;
+    //   const width = canvas.clientWidth;
+    //   const height = canvas.clientHeight;
+    //   const needResize = canvas.width !== width || canvas.height !== height;
+    //   if (needResize) {
+    //     renderer.setSize(width, height, false);
+    //   }
+    //   return needResize;
+    // }
+
+    // resizeRendererToDisplaySize(renderer)
+
   //single cube
     // let geometry = new THREE.BoxGeometry( 1, 1, 1 );
     // let material = new THREE.MeshPhongMaterial( { color: 0x117E2C } );
