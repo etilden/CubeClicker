@@ -6,8 +6,8 @@ class App extends React.Component {
 
     var scene = new THREE.Scene();
 
-    //1: field of view: the extend of the scene seen on the display at any given time
-    //2: aspect ratio: usually width/height to avoid distortion
+    //1: field of view (fov): the extend of the scene seen on the display at any given time
+    //2: aspect ratio: usually width/height to avoid distortion. default is 2. 
     //3 + 4: near + far clipping planes: where is too close or too far to see
     var camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 0.1, 1000 );
     //(x, y, z)
@@ -20,12 +20,20 @@ class App extends React.Component {
     renderer.setSize( window.innerWidth, window.innerHeight );
     document.body.appendChild( renderer.domElement );
 
-  //cube
+  //single cube
     // var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    // var material = new THREE.MeshBasicMaterial( { color: 0x002a00 } );
+    // var material = new THREE.MeshPhongMaterial( { color: 0x117E2C } );
     // var cube = new THREE.Mesh( geometry, material );
     // scene.add( cube );
     // camera.position.z = 5;
+
+    // const color = 0xFFFFFF;
+    // const intensity = 1;
+    // const light = new THREE.DirectionalLight(color, intensity);
+    // light.position.set(-1, 2, 4);
+    // scene.add(light);
+
+    //   //add light to the scene
     // var animate = function () {
     //   requestAnimationFrame( animate );
     //   cube.rotation.x += 0.01;
@@ -33,6 +41,29 @@ class App extends React.Component {
     //   renderer.render( scene, camera );
     // };
     // animate();
+
+  //multiple cubes
+      //single cube
+      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
+      var material = new THREE.MeshPhongMaterial( { color: 0x117E2C } );
+      var cube = new THREE.Mesh( geometry, material );
+      scene.add( cube );
+      camera.position.z = 5;
+  
+      const color = 0xFFFFFF;
+      const intensity = 1;
+      const light = new THREE.DirectionalLight(color, intensity);
+      light.position.set(-1, 2, 4);
+      scene.add(light);
+  
+        //add light to the scene
+      var animate = function () {
+        requestAnimationFrame( animate );
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.01;
+        renderer.render( scene, camera );
+      };
+      animate();
 
   //line
     // var material = new THREE.LineBasicMaterial( { color: 0xFF0000 } );
@@ -55,19 +86,7 @@ class App extends React.Component {
     // };
     // animate();
 
-  //loading 3D models
-    var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    var material = new THREE.MeshBasicMaterial( { color: 0x002a00 } );
-    var cube = new THREE.Mesh( geometry, material );
-    scene.add( cube );
-    camera.position.z = 5;
-    var animate = function () {
-      requestAnimationFrame( animate );
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      renderer.render( scene, camera );
-    };
-    animate();
+  //loading 3D models (the below is not for 3d models, it is from the cubes workshop. Just wanted to have a starting place)
 
   }
 
