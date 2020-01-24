@@ -21,9 +21,9 @@ class App extends React.Component {
     document.body.appendChild( renderer.domElement );
 
   //single cube
-    // var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-    // var material = new THREE.MeshPhongMaterial( { color: 0x117E2C } );
-    // var cube = new THREE.Mesh( geometry, material );
+    // let geometry = new THREE.BoxGeometry( 1, 1, 1 );
+    // let material = new THREE.MeshPhongMaterial( { color: 0x117E2C } );
+    // let cube = new THREE.Mesh( geometry, material );
     // scene.add( cube );
     // camera.position.z = 5;
 
@@ -34,7 +34,7 @@ class App extends React.Component {
     // scene.add(light);
 
     //   //add light to the scene
-    // var animate = function () {
+    // let animate = function () {
     //   requestAnimationFrame( animate );
     //   cube.rotation.x += 0.01;
     //   cube.rotation.y += 0.01;
@@ -43,13 +43,23 @@ class App extends React.Component {
     // animate();
 
   //multiple cubes
-      //single cube
-      var geometry = new THREE.BoxGeometry( 1, 1, 1 );
-      var material = new THREE.MeshPhongMaterial( { color: 0x117E2C } );
-      var cube = new THREE.Mesh( geometry, material );
-      scene.add( cube );
+      let geometry = new THREE.BoxGeometry( 1, 1, 1 );
       camera.position.z = 5;
-  
+      
+      function makeInstance(geometry, color, x) {
+        const material = new THREE.MeshPhongMaterial({color});
+        const cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+        cube.position.x = x; 
+        return cube;  
+      }
+
+      const cubes = [
+        makeInstance(geometry, 0x44aa88,  0),
+        makeInstance(geometry, 0x8844aa, -2),
+        makeInstance(geometry, 0xaa8844,  2),
+      ];
+
       //add light to the scene
       const color = 0xFFFFFF;
       const intensity = 1;
@@ -57,38 +67,15 @@ class App extends React.Component {
       light.position.set(-1, 2, 4);
       scene.add(light);
 
-      // function makeInstance(geometry, color, x) {
-      //   const material = new THREE.MeshPhongMaterial({color});
 
-      //   const cube = new THREE.Mesh(geometry, material);
-      //   scene.add(cube);
-
-      //   cube.position.x = x; 
-
-      //   return cube;  
-      // }
-
-      // const cubes = [
-      //   makeInstance(geometry, 0x44aa88,  0),
-      //   makeInstance(geometry, 0x8844aa, -2),
-      //   makeInstance(geometry, 0xaa8844,  2),
-      // ];
-
-      // function render(time) {
-      //   time *= 0.001; //converts time to seconds
-
-      //   cubes.forEach((cube, ndx) => {
-      //     const speed = 1 + ndx * .1;
-      //     const rot = time * speed;
-      //     cube.rotation.x = rot;
-      //     cube.rotation.y = rot;
-      //   }
-      // }
-
-      var animate = function () {
+      let animate = function () {
         requestAnimationFrame( animate );
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.01;
+        cubes.forEach((cube, i) => {
+          let additional = (i+1)*0.01
+          cube.rotation.x += additional;
+          cube.rotation.y += additional;
+          return cube;
+        })
         renderer.render( scene, camera );
       };
       animate();
