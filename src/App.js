@@ -11,8 +11,8 @@ class App extends React.Component {
     //3 + 4: near + far clipping planes: where is too close or too far to see
     var camera = new THREE.PerspectiveCamera( 45, window.innerWidth/window.innerHeight, 0.1, 1000 );
     //(x, y, z)
-    camera.position.set( -10, -10, 10 );
-    camera.lookAt( 30, 30, 0 );
+    camera.position.set( 0, 0, 0 );
+    camera.lookAt( 0, 0, 0 );
 
     //sets how much of the screen this will take up. Can be used to reduce resolution
     //WebGLRenderer is used for most current browsers. 
@@ -50,13 +50,41 @@ class App extends React.Component {
       scene.add( cube );
       camera.position.z = 5;
   
+      //add light to the scene
       const color = 0xFFFFFF;
       const intensity = 1;
       const light = new THREE.DirectionalLight(color, intensity);
       light.position.set(-1, 2, 4);
       scene.add(light);
-  
-        //add light to the scene
+
+      // function makeInstance(geometry, color, x) {
+      //   const material = new THREE.MeshPhongMaterial({color});
+
+      //   const cube = new THREE.Mesh(geometry, material);
+      //   scene.add(cube);
+
+      //   cube.position.x = x; 
+
+      //   return cube;  
+      // }
+
+      // const cubes = [
+      //   makeInstance(geometry, 0x44aa88,  0),
+      //   makeInstance(geometry, 0x8844aa, -2),
+      //   makeInstance(geometry, 0xaa8844,  2),
+      // ];
+
+      // function render(time) {
+      //   time *= 0.001; //converts time to seconds
+
+      //   cubes.forEach((cube, ndx) => {
+      //     const speed = 1 + ndx * .1;
+      //     const rot = time * speed;
+      //     cube.rotation.x = rot;
+      //     cube.rotation.y = rot;
+      //   }
+      // }
+
       var animate = function () {
         requestAnimationFrame( animate );
         cube.rotation.x += 0.01;
