@@ -4,7 +4,14 @@ import * as THREE from "three";
 class App extends React.Component {
   constructor() {
     super()
+
+    this.state={
+
+    }
+
     this.clickLocator = this.clickLocator.bind(this)
+    // this.cubeIncludes = this.cubeIncludes.bind(this)
+    // this.directionChanger = this.directionChanger.bind(this)
     document.addEventListener('click', (event) => this.clickLocator(event))
   }
 
@@ -94,24 +101,30 @@ class App extends React.Component {
     };
 
     let differentiation = function(cube) {}
-
+    
     //travel
     // let travel = function () {
-    //   requestAnimationFrame( travel );
-    //   cubes.forEach((cube, i) => {
-    //     let differentiation = (i+1)*0.01
-    //     cube.position.x += differentiation;
-    //     cube.position.y -= differentiation;
-    //   })
-    //   renderer.render( scene, camera );
-    // };
-    // travel(); 
-  }
+      //   requestAnimationFrame( travel );
+      //   cubes.forEach((cube, i) => {
+        //     let differentiation = (i+1)*0.01
+        //     cube.position.x += differentiation;
+        //     cube.position.y -= differentiation;
+        //   })
+        //   renderer.render( scene, camera );
+        // };
+        // travel(); 
+      }
 
-  clickLocator = (event) => {
-    console.log('hello')
-    console.log(event)
-  }
+    clickLocator = (event) => {
+      console.log('hello')
+      console.log(event)
+      // return { x: event.pageX, y: event.pageY };
+    }
+
+
+  // directionChanger = (event) => {
+  //   let clickLocation = clickLocator(event)
+  // }
 
   render() {
     return (
