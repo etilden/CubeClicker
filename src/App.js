@@ -49,38 +49,50 @@ class App extends React.Component {
     const cubeA = makeInstance(geometry, 0x44aa88, 0, 0);
     const cubeB = makeInstance(geometry, 0x8844aa, -2, -2);
     const cubeC = makeInstance(geometry, 0xaa8844,  1, 1);
-    
+
     const cubes = [
       cubeA,
       cubeB,
       cubeC,
     ];
     
-    //spin
+    // spin
     let animate = function () {
       requestAnimationFrame( animate );
       cubes.forEach((cube, i) => {
         let additional = (i+1)*0.01
         cube.rotation.x += additional;
         cube.rotation.y += additional;
-        // cube.position.x += 0.01;
-        // cube.position.y += 0.01;
+        // console.log('x', cube.position.x, 'y', cube.position.y)
+
       })
       renderer.render( scene, camera );
     };
     animate();
     
-    //travel
-    let travel = function () {
-      requestAnimationFrame( travel );
-      cubes.forEach((cube, i) => {
-        let differentiation = (i+1)*0.01
-        cube.position.x += differentiation;
-        cube.position.y += differentiation;
+    let cubeIncludes = function(clickX, clickY) {
+      cubes.forEach(cube => {
+        if (cube.position.x - 0.5 >= clickX && clickX <= cube.position.x + 0.5) {
+          if (cube.position.y - 0.5 >= clickY && clickY <= cube.position.y + 0.5) {
+            return cube
+          }
+        }
       })
-      renderer.render( scene, camera );
-    };
-    travel(); 
+    }
+
+    let differentiation = function(cube) {}
+
+    //travel
+    // let travel = function () {
+    //   requestAnimationFrame( travel );
+    //   cubes.forEach((cube, i) => {
+    //     let differentiation = (i+1)*0.01
+    //     cube.position.x += differentiation;
+    //     cube.position.y -= differentiation;
+    //   })
+    //   renderer.render( scene, camera );
+    // };
+    // travel(); 
   }
 
   clickLocator = (event) => {
