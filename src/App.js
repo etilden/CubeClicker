@@ -70,15 +70,28 @@ class App extends React.Component {
     };
     animate();
     
-    let cubeIncludes = function(clickX, clickY) {
-      cubes.forEach(cube => {
-        if (cube.position.x - 0.5 >= clickX && clickX <= cube.position.x + 0.5) {
-          if (cube.position.y - 0.5 >= clickY && clickY <= cube.position.y + 0.5) {
-            return cube
-          }
-        }
-      })
-    }
+    let cubeIncludes = function(cube, clickX, clickY) {
+      let cubeX = {
+        xPosition: cube.position.x * 80 + 720,
+        xMin: cube.position.x * 80 + 651,
+        xMax: cube.position.x * 80 + 789,
+      };
+    
+      let cubeY = {
+        yPosition: cube.position.y * 80 + 438,
+        yMin: cube.position.y * 80 + 369,
+        yMax: cube.position.y * 80 + 507,
+      };
+    
+      if (
+        clickX >= cubeX.xMin &&
+        clickX <= cubeX.xMax &&
+        clickY >= cubeY.yMin &&
+        clickY <= cubeY.yMax
+      ) {
+        return cube;
+      }
+    };
 
     let differentiation = function(cube) {}
 
