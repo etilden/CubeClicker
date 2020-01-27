@@ -11,7 +11,7 @@ class App extends React.Component {
 
     this.clickLocator = this.clickLocator.bind(this)
     this.cubeIncludes = this.cubeIncludes.bind(this)
-    // this.directionChanger = this.directionChanger.bind(this)
+    this.directionChanger = this.directionChanger.bind(this)
     document.addEventListener('click', (event) => this.clickLocator(event))
   }
 
@@ -79,18 +79,20 @@ class App extends React.Component {
     };
     animate();
     
-    //travel
-    // let travel = function () {
-      //   requestAnimationFrame( travel );
-      //   cubes.forEach((cube, i) => {
-        //     let differentiation = (i+1)*0.01
-        //     cube.position.x += differentiation;
-        //     cube.position.y -= differentiation;
-        //   })
-        //   renderer.render( scene, camera );
-        // };
-        // travel(); 
-      }
+
+  //travel
+  let travel = function () {
+    requestAnimationFrame( travel );
+    cubes.forEach((cube, i) => {
+      let differentiation = (i+1)*0.01
+      cube.position.x += differentiation;
+      cube.position.y += differentiation;
+    })
+    renderer.render( scene, camera );
+  };
+    
+    travel(); 
+    }
 
       cubeIncludes = function(cube, clickX, clickY) {
         let cubeX = {
@@ -119,22 +121,20 @@ class App extends React.Component {
         }
       };
 
+    directionChanger = (cubeArr) => {
+        console.log(cubeArr[0])
+      }
     clickLocator = (event) => {
-      console.log(event)
-      console.log(event, 'x', event.pageX, 'y', event.pageY)
-      let clickedCubes= this.state.cubes.filter(cube => this.cubeIncludes(cube, event.pageX, event.pageY))
-      console.log(clickedCubes)
-      return clickedCubes
+      let clickedCubes= this.state.cubes.filter(cube => this.cubeIncludes(cube, event.pageX, event.pageY));
+      console.log('ouch', clickedCubes)
+      this.directionChanger(clickedCubes)
     }
 
 
-  // directionChanger = (event) => {
-  //   let clickLocation = clickLocator(event)
-  // }
 
   render() {
     return (
-      <div onClick={(event) => this.clickLocator(event)}></div>
+      <div />
     );
   }
 }
