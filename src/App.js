@@ -6,11 +6,11 @@ class App extends React.Component {
     super()
 
     this.state={
-
+      cubes: []
     }
 
     this.clickLocator = this.clickLocator.bind(this)
-    // this.cubeIncludes = this.cubeIncludes.bind(this)
+    this.cubeIncludes = this.cubeIncludes.bind(this)
     // this.directionChanger = this.directionChanger.bind(this)
     document.addEventListener('click', (event) => this.clickLocator(event))
   }
@@ -44,24 +44,27 @@ class App extends React.Component {
     scene.add(light);
     
     //make the cubes
-    function makeInstance(geometry, color, x, y) {
+    function makeInstance(geometry, color, x, y, name) {
       const material = new THREE.MeshPhongMaterial({color});
       const cube = new THREE.Mesh(geometry, material);
       scene.add(cube);
       cube.position.x = x; 
       cube.position.y = y;
+      cube.name = name;
       return cube;  
     }
 
-    const cubeA = makeInstance(geometry, 0x44aa88, 0, 0);
-    const cubeB = makeInstance(geometry, 0x8844aa, -2, -2);
-    const cubeC = makeInstance(geometry, 0xaa8844,  1, 1);
-
+    const cubeA = makeInstance(geometry, 0x44aa88, 0, 0, 'greenish');
+    const cubeB = makeInstance(geometry, 0x8844aa, -2, -2, 'purple');
+    const cubeC = makeInstance(geometry, 0xaa8844,  1, 1, 'yellow');
+    
     const cubes = [
       cubeA,
       cubeB,
       cubeC,
     ];
+
+    this.setState({cubes: [...cubes]})
     
     // spin
     let animate = function () {
@@ -70,37 +73,11 @@ class App extends React.Component {
         let additional = (i+1)*0.01
         cube.rotation.x += additional;
         cube.rotation.y += additional;
-        // console.log('x', cube.position.x, 'y', cube.position.y)
 
       })
       renderer.render( scene, camera );
     };
     animate();
-    
-    let cubeIncludes = function(cube, clickX, clickY) {
-      let cubeX = {
-        xPosition: cube.position.x * 80 + 720,
-        xMin: cube.position.x * 80 + 651,
-        xMax: cube.position.x * 80 + 789,
-      };
-    
-      let cubeY = {
-        yPosition: cube.position.y * 80 + 438,
-        yMin: cube.position.y * 80 + 369,
-        yMax: cube.position.y * 80 + 507,
-      };
-    
-      if (
-        clickX >= cubeX.xMin &&
-        clickX <= cubeX.xMax &&
-        clickY >= cubeY.yMin &&
-        clickY <= cubeY.yMax
-      ) {
-        return cube;
-      }
-    };
-
-    let differentiation = function(cube) {}
     
     //travel
     // let travel = function () {
@@ -115,10 +92,39 @@ class App extends React.Component {
         // travel(); 
       }
 
+      cubeIncludes = function(cube, clickX, clickY) {
+        let cubeX = {
+          xPosition: cube.position.x * 80 + 720,
+          xMin: cube.position.x * 80 + 651,
+          xMax: cube.position.x * 80 + 789,
+        };
+      
+        let cubeY = {
+          yPosition: cube.position.y * 87.7 + (window.innerHeight/2),
+          yMin: -1*cube.position.y * 87.7 + (window.innerHeight/2) - 69,
+          yMax: -1*cube.position.y * 87.7 + (window.innerHeight/2) + 69,
+        };
+
+        // console.log('cpx', cube.position.x, 'clickX', clickX , 'cubeX.xMin', cubeX.xMin, 'cubeX.xMax', cubeX.xMax) 
+        // console.log('cpy', cube.position.y, "clickY", clickY, "cubeY.yMin", cubeY.yMin, 'cubeY.yMax', cubeY.yMax)
+        // console.log("clickY", clickY, "cubeY.yMin", cubeY.yMin, 'cubeY.yMax', cubeY.yMax, 'cpy', cube.position.y)
+      
+        if (
+          clickX >= cubeX.xMin &&
+          clickX <= cubeX.xMax &&
+          clickY >= cubeY.yMin &&
+          clickY <= cubeY.yMax
+        ) {
+          return cube;
+        }
+      };
+
     clickLocator = (event) => {
-      console.log('hello')
       console.log(event)
-      // return { x: event.pageX, y: event.pageY };
+      console.log(event, 'x', event.pageX, 'y', event.pageY)
+      let clickedCubes= this.state.cubes.filter(cube => this.cubeIncludes(cube, event.pageX, event.pageY))
+      console.log(clickedCubes)
+      return clickedCubes
     }
 
 
