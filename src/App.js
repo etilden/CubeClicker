@@ -86,7 +86,7 @@ class App extends React.Component {
     cubes.forEach((cube, i) => {
       let differentiation = (i+1)*0.01
       cube.position.x += differentiation;
-      cube.position.y += differentiation;
+      cube.position.y -= differentiation;
     })
     renderer.render( scene, camera );
   };
