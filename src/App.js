@@ -81,14 +81,15 @@ class App extends React.Component {
     
 
     //travel
-    let travel = function (cubeName, xdifferentiation = 0.01, ydifferentiation = 0.01) {
+    let travel = function (xdifferentiation = 0.01, ydifferentiation = 0.01) {
       requestAnimationFrame( travel );
       cubes.forEach((cube) => {
           if (cube.position.x <= 9 && cube.position.x >= -9) {
             xdifferentiation*=(-1);
-            ydifferentiation*=(-1);
+            // ydifferentiation*=(-1);
           }
           if (cube.position.y <= 5 && cube.position.y >= -5) {
+            // xdifferentiation*=(-1)
             ydifferentiation*=(-1);
           }
           if (cube.position.x > 9 || cube.position.x < -9 || cube.position.y > 5 || cube.position.y < -5) {
@@ -134,7 +135,7 @@ class App extends React.Component {
     }
   };
 
-  //if click falls on a cube change that cube's direction
+  //if click falls on a cube change that cube's location
   directionChanger = cube => {
     console.log('cube', cube, 'x', cube.position.x, 'y', cube.position.y)
     cube.position.x = 1
