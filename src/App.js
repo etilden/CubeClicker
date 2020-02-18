@@ -12,6 +12,7 @@ class App extends React.Component {
     this.clickLocator = this.clickLocator.bind(this)
     this.cubeIncludes = this.cubeIncludes.bind(this)
     this.directionChanger = this.directionChanger.bind(this)
+    // this.lost = this.lost.bind(this)
     document.addEventListener('click', (event) => this.clickLocator(event))
   }
 
@@ -81,33 +82,37 @@ class App extends React.Component {
     
 
     //travel
-    let travel = function (xdifferentiation = 0.01, ydifferentiation = 0.01) {
+    let travel = function (cubeName, xdifferentiation = 0.01, ydifferentiation = 0.01) {
       requestAnimationFrame( travel );
       cubes.forEach((cube) => {
           if (cube.position.x <= 9 && cube.position.x >= -9) {
             xdifferentiation*=(-1);
-            // ydifferentiation*=(-1);
           }
           if (cube.position.y <= 5 && cube.position.y >= -5) {
-            // xdifferentiation*=(-1)
             ydifferentiation*=(-1);
           }
           if (cube.position.x > 9 || cube.position.x < -9 || cube.position.y > 5 || cube.position.y < -5) {
             renderer.setClearColor(0xFF0000)
+            // eslint-disable-next-line no-restricted-globals
+            setTimeout(() => {location.reload()}, 2000)
           }
           cube.position.x += xdifferentiation;
           cube.position.y -= ydifferentiation;
       })
       renderer.render( scene, camera );
     };
-    travel();   
+    travel();
   }
+
 
   //access location of click
   clickLocator = (event) => {
     let [clickedCube]= this.state.cubes.filter(cube => this.cubeIncludes(cube, event.pageX, event.pageY));
     if (clickedCube) {
       this.directionChanger(clickedCube)
+    }
+    if (this.state.lost) {
+      console.log(event)
     }
   }
 
@@ -137,7 +142,6 @@ class App extends React.Component {
 
   //if click falls on a cube change that cube's location
   directionChanger = cube => {
-    console.log('cube', cube, 'x', cube.position.x, 'y', cube.position.y)
     cube.position.x = 1
     cube.position.y = 1
   }

@@ -1,3 +1,14 @@
+# CubeClicker...
+is a cube clicking game that uses three.js in a react environment to create a fun and easy game. 
+
+## To play...
+fork this repository, npm i, and npm start. 
+
+Once the game page has loaded, click the cubes to prevent them from leaving the screen. If a cube leaves the screen the background will turn red to indicate that the game is over and then the page will reload so that you can play again! Happy clicking! 
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
