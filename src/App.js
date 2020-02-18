@@ -12,7 +12,6 @@ class App extends React.Component {
     this.clickLocator = this.clickLocator.bind(this)
     this.cubeIncludes = this.cubeIncludes.bind(this)
     this.directionChanger = this.directionChanger.bind(this)
-    // this.lost = this.lost.bind(this)
     document.addEventListener('click', (event) => this.clickLocator(event))
   }
 
@@ -52,6 +51,8 @@ class App extends React.Component {
       cube.position.x = x; 
       cube.position.y = y;
       cube.name = name;
+      cube.xDifferentiation = 0.01
+      cube.yDifferentiation = 0.01
       return cube;  
     }
 
@@ -82,22 +83,22 @@ class App extends React.Component {
     
 
     //travel
-    let travel = function (cubeName, xdifferentiation = 0.01, ydifferentiation = 0.01) {
+    let travel = function (/*cubeName, xdifferentiation = 0.01, ydifferentiation = 0.01*/) {
       requestAnimationFrame( travel );
       cubes.forEach((cube) => {
-          if (cube.position.x <= 9 && cube.position.x >= -9) {
-            xdifferentiation*=(-1);
-          }
-          if (cube.position.y <= 5 && cube.position.y >= -5) {
-            ydifferentiation*=(-1);
-          }
+          // if (cube.position.x <= 9 && cube.position.x >= -9) {
+          //   cube.xDifferentiation*=(-1);
+          // }
+          // if (cube.position.y <= 5 && cube.position.y >= -5) {
+          //   cube.yDifferentiation*=(-1);
+          // }
           if (cube.position.x > 9 || cube.position.x < -9 || cube.position.y > 5 || cube.position.y < -5) {
             renderer.setClearColor(0xFF0000)
             // eslint-disable-next-line no-restricted-globals
             setTimeout(() => {location.reload()}, 2000)
           }
-          cube.position.x += xdifferentiation;
-          cube.position.y -= ydifferentiation;
+          cube.position.x += cube.xDifferentiation;
+          cube.position.y -= cube.yDifferentiation;
       })
       renderer.render( scene, camera );
     };
@@ -142,8 +143,8 @@ class App extends React.Component {
 
   //if click falls on a cube change that cube's location
   directionChanger = cube => {
-    cube.position.x = 1
-    cube.position.y = 1
+    cube.xDifferentiation = (0.01 + (Math.random()*0.01 - 0.005))*(-1)
+    cube.yDifferentiation = (0.01 + (Math.random()*0.01 - 0.005))*(-1)
   }
 
 
