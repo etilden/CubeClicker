@@ -80,67 +80,65 @@ class App extends React.Component {
     animate();
     
 
-  //travel
-  let travel = function () {
-    requestAnimationFrame( travel );
-    let xdifferentiation = 0.01;
-    let ydifferentiation = 0.01;
-    cubes.forEach((cube) => {
-      if (cube.position.x <= 9 && cube.position.x >= -9) {
-        xdifferentiation*=(-1);
-        ydifferentiation*=(-1);
-        // console.log(xdifferentiation)
-      }
-      if (cube.position.y <= 5 && cube.position.y >= -5) {
-        ydifferentiation*=(-1);
-      }
-      cube.position.x += xdifferentiation;
-      cube.position.y -= ydifferentiation;
-      // console.log('x', cube.position.x, 'y', cube.position.y)
-    })
-    renderer.render( scene, camera );
-  };
-    
-    travel(); 
-
-    }
-
-      cubeIncludes = function(cube, clickX, clickY) {
-        let cubeX = {
-          xPosition: cube.position.x * 80 + 720,
-          xMin: cube.position.x * 80 + 651,
-          xMax: cube.position.x * 80 + 789,
-        };
-      
-        let cubeY = {
-          yPosition: cube.position.y * 87.7 + (window.innerHeight/2),
-          yMin: -1*cube.position.y * 87.7 + (window.innerHeight/2) - 69,
-          yMax: -1*cube.position.y * 87.7 + (window.innerHeight/2) + 69,
-        };
-
-        // console.log('cpx', cube.position.x, 'clickX', clickX , 'cubeX.xMin', cubeX.xMin, 'cubeX.xMax', cubeX.xMax) 
-        // console.log('cpy', cube.position.y, "clickY", clickY, "cubeY.yMin", cubeY.yMin, 'cubeY.yMax', cubeY.yMax)
-        // console.log("clickY", clickY, "cubeY.yMin", cubeY.yMin, 'cubeY.yMax', cubeY.yMax, 'cpy', cube.position.y)
-      
-        if (
-          clickX >= cubeX.xMin &&
-          clickX <= cubeX.xMax &&
-          clickY >= cubeY.yMin &&
-          clickY <= cubeY.yMax
-        ) {
-          return cube;
+    //travel
+    let travel = function () {
+      requestAnimationFrame( travel );
+      let xdifferentiation = 0.01;
+      let ydifferentiation = 0.01;
+      cubes.forEach((cube) => {
+        if (cube.position.x <= 9 && cube.position.x >= -9) {
+          xdifferentiation*=(-1);
+          ydifferentiation*=(-1);
         }
-      };
+        if (cube.position.y <= 5 && cube.position.y >= -5) {
+          ydifferentiation*=(-1);
+        }
+        cube.position.x += xdifferentiation;
+        cube.position.y -= ydifferentiation;
+      })
+      renderer.render( scene, camera );
+    };
+    travel();   
+  }
 
-    directionChanger = (cubeArr) => {
-        console.log(cubeArr[0])
-      }
-    clickLocator = (event) => {
-      let clickedCubes= this.state.cubes.filter(cube => this.cubeIncludes(cube, event.pageX, event.pageY));
-      console.log('ouch', clickedCubes)
-      this.directionChanger(clickedCubes)
+  //access location of click
+  clickLocator = (event) => {
+    let [clickedCube]= this.state.cubes.filter(cube => this.cubeIncludes(cube, event.pageX, event.pageY));
+    if (clickedCube) {
+      this.directionChanger(clickedCube)
     }
+  }
 
+  //does click fall onto a cube
+  cubeIncludes = function(cube, clickX, clickY) {
+    let cubeX = {
+      xPosition: cube.position.x * 80 + 720,
+      xMin: cube.position.x * 80 + 651,
+      xMax: cube.position.x * 80 + 789,
+    };
+  
+    let cubeY = {
+      yPosition: cube.position.y * 87.7 + (window.innerHeight/2),
+      yMin: -1*cube.position.y * 87.7 + (window.innerHeight/2) - 69,
+      yMax: -1*cube.position.y * 87.7 + (window.innerHeight/2) + 69,
+    };
+  
+    if (
+      clickX >= cubeX.xMin &&
+      clickX <= cubeX.xMax &&
+      clickY >= cubeY.yMin &&
+      clickY <= cubeY.yMax
+    ) {
+      return cube;
+    }
+  };
+
+  //if click falls on a cube change that cube's direction
+  directionChanger = cube => {
+    console.log('cube', cube, 'x', cube.position.x, 'y', cube.position.y)
+    cube.position.x = 1
+    cube.position.y = 1
+  }
 
 
   render() {
