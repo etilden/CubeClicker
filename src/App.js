@@ -83,15 +83,9 @@ class App extends React.Component {
     
 
     //travel
-    let travel = function (/*cubeName, xdifferentiation = 0.01, ydifferentiation = 0.01*/) {
+    let travel = function () {
       requestAnimationFrame( travel );
       cubes.forEach((cube) => {
-          // if (cube.position.x <= 9 && cube.position.x >= -9) {
-          //   cube.xDifferentiation*=(-1);
-          // }
-          // if (cube.position.y <= 5 && cube.position.y >= -5) {
-          //   cube.yDifferentiation*=(-1);
-          // }
           if (cube.position.x > 9 || cube.position.x < -9 || cube.position.y > 5 || cube.position.y < -5) {
             renderer.setClearColor(0xFF0000)
             // eslint-disable-next-line no-restricted-globals
