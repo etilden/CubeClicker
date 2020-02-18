@@ -81,20 +81,21 @@ class App extends React.Component {
     
 
     //travel
-    let travel = function () {
+    let travel = function (cubeName, xdifferentiation = 0.01, ydifferentiation = 0.01) {
       requestAnimationFrame( travel );
-      let xdifferentiation = 0.01;
-      let ydifferentiation = 0.01;
       cubes.forEach((cube) => {
-        if (cube.position.x <= 9 && cube.position.x >= -9) {
-          xdifferentiation*=(-1);
-          ydifferentiation*=(-1);
-        }
-        if (cube.position.y <= 5 && cube.position.y >= -5) {
-          ydifferentiation*=(-1);
-        }
-        cube.position.x += xdifferentiation;
-        cube.position.y -= ydifferentiation;
+          if (cube.position.x <= 9 && cube.position.x >= -9) {
+            xdifferentiation*=(-1);
+            ydifferentiation*=(-1);
+          }
+          if (cube.position.y <= 5 && cube.position.y >= -5) {
+            ydifferentiation*=(-1);
+          }
+          if (cube.position.x > 9 || cube.position.x < -9 || cube.position.y > 5 || cube.position.y < -5) {
+            renderer.setClearColor(0xFF0000)
+          }
+          cube.position.x += xdifferentiation;
+          cube.position.y -= ydifferentiation;
       })
       renderer.render( scene, camera );
     };
