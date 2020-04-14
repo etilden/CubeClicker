@@ -1,22 +1,19 @@
 {
   "files": {
-    "main.css": "/CubeClicker/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/CubeClicker/static/js/main.3a7bdb36.chunk.js",
-    "main.js.map": "/CubeClicker/static/js/main.3a7bdb36.chunk.js.map",
+    "main.js": "/CubeClicker/static/js/main.41656dcc.chunk.js",
+    "main.js.map": "/CubeClicker/static/js/main.41656dcc.chunk.js.map",
     "runtime-main.js": "/CubeClicker/static/js/runtime-main.5f6d4f8d.js",
     "runtime-main.js.map": "/CubeClicker/static/js/runtime-main.5f6d4f8d.js.map",
     "static/js/2.fb54ca3c.chunk.js": "/CubeClicker/static/js/2.fb54ca3c.chunk.js",
     "static/js/2.fb54ca3c.chunk.js.map": "/CubeClicker/static/js/2.fb54ca3c.chunk.js.map",
     "index.html": "/CubeClicker/index.html",
-    "precache-manifest.2310d53008d54daa070eb86cd99c171f.js": "/CubeClicker/precache-manifest.2310d53008d54daa070eb86cd99c171f.js",
+    "precache-manifest.6aadd3c9036c11007716dbb7f1a03c5c.js": "/CubeClicker/precache-manifest.6aadd3c9036c11007716dbb7f1a03c5c.js",
     "service-worker.js": "/CubeClicker/service-worker.js",
-    "static/css/main.5ecd60fb.chunk.css.map": "/CubeClicker/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.fb54ca3c.chunk.js.LICENSE": "/CubeClicker/static/js/2.fb54ca3c.chunk.js.LICENSE"
   },
   "entrypoints": [
     "static/js/runtime-main.5f6d4f8d.js",
     "static/js/2.fb54ca3c.chunk.js",
-    "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.3a7bdb36.chunk.js"
+    "static/js/main.41656dcc.chunk.js"
   ]
 }

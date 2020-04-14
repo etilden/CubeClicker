@@ -1,11 +1,7 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e4acecd558d0ba44ac95e77edfcc59ba",
+    "revision": "78f8ffb82e820c7094efff66d26e63ec",
     "url": "/CubeClicker/index.html"
-  },
-  {
-    "revision": "137f10c9cc817d102c1c",
-    "url": "/CubeClicker/static/css/main.5ecd60fb.chunk.css"
   },
   {
     "revision": "4e679845e4b468419cd2",
@@ -16,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/CubeClicker/static/js/2.fb54ca3c.chunk.js.LICENSE"
   },
   {
-    "revision": "137f10c9cc817d102c1c",
-    "url": "/CubeClicker/static/js/main.3a7bdb36.chunk.js"
+    "revision": "01e58db173edaba840a5",
+    "url": "/CubeClicker/static/js/main.41656dcc.chunk.js"
   },
   {
     "revision": "aea5cba34defc61b8ed2",

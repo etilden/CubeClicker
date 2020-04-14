@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/CubeClicker/precache-manifest.2310d53008d54daa070eb86cd99c171f.js"
+  "/CubeClicker/precache-manifest.6aadd3c9036c11007716dbb7f1a03c5c.js"
 );
 
 self.addEventListener('message', (event) => {
