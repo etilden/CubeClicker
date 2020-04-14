@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/cube-clicker/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/cube-clicker/static/js/main.8698afe9.chunk.js",
+    "main.js.map": "/cube-clicker/static/js/main.8698afe9.chunk.js.map",
+    "runtime-main.js": "/cube-clicker/static/js/runtime-main.0dc3d548.js",
+    "runtime-main.js.map": "/cube-clicker/static/js/runtime-main.0dc3d548.js.map",
+    "static/js/2.fb54ca3c.chunk.js": "/cube-clicker/static/js/2.fb54ca3c.chunk.js",
+    "static/js/2.fb54ca3c.chunk.js.map": "/cube-clicker/static/js/2.fb54ca3c.chunk.js.map",
+    "index.html": "/cube-clicker/index.html",
+    "precache-manifest.818f3454a9735b4d2578e9a931e3f642.js": "/cube-clicker/precache-manifest.818f3454a9735b4d2578e9a931e3f642.js",
+    "service-worker.js": "/cube-clicker/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/cube-clicker/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.fb54ca3c.chunk.js.LICENSE": "/cube-clicker/static/js/2.fb54ca3c.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0dc3d548.js",
+    "static/js/2.fb54ca3c.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.8698afe9.chunk.js"
+  ]
+}
